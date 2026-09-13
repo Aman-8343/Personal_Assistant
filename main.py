@@ -6,7 +6,7 @@ from google import genai
 load_dotenv()
 
 api_key=os.getenv("API_KEY")
-client=genai(api_key=api_key)
+client=genai.Client(api_key=api_key)
 
 app=Flask(__name__)
 
@@ -27,6 +27,7 @@ def query():
         max_output_tokens=512
     )
     answer = response.output_text.strip()
+    print(answer)
     return jsonify({"response": answer}), 200
 
 
